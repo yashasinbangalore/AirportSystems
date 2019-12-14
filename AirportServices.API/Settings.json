@@ -1,0 +1,12 @@
+[
+	{
+		"airportName":"MEL",
+		"restrictedFlights":"XX102",
+		"allowChildUsePRS":true
+	},
+		{
+		"airportName":"OOL",
+		"restrictedFlights":"XX104",
+		"allowChildUsePRS":false
+	}
+]
