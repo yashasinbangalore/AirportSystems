@@ -9,4 +9,6 @@ Before running the API, update the "BookingDataPath" configuration value in the 
 
 API documentation available in below path after running the web API application : http://localhost:5000/swagger
 
+The GUI application in AirportServices-UI just contains one page, where immigration officer would enter passenger name and Airport, based on which result would be displayed which could either be an error, warning or a successful message 
+
 
