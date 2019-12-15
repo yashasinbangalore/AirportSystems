@@ -1,19 +1,26 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2">
   <a class="navbar-brand" href="#">Immigration</a>
   
-
-    <form #validateForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="validateBooking()">
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<ul class="navbar-nav mr-auto"></ul>
+  <form #validateForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="validateBooking()">
       <input class="form-control mr-sm-2" type="text" name="Name" placeholder="Passenger name" required [(ngModel)]="viewModel.PassengerName">
       <input class="form-control mr-sm-2" type="text" name="Airport" placeholder="Airport" required [(ngModel)]="viewModel.Airport">
       <button [disabled]="!validateForm.valid"  class="btn btn-success my-2 my-sm-0" type="submit">
         Validate
       </button>
     </form>
-  
+</div>  
 </nav>
+
+
 <main role="main" class="container">
-  <div *ngIf="isValidated()" class="jumbotron">
+  <div *ngIf="isValidated() && !isLoading" class="jumbotron">
     <h1>{{validationResult.result}}</h1>
     <p class="lead">{{validationResult.message}}</p>
+  </div>
+  <div *ngIf="isLoading" class="jumbotron">
+    <h1>Checking...</h1>
+    <p class="lead">&nbsp;</p>
   </div>
 </main>
