@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PassengerValidationService } from '../_services/passengerValidation.service';
+
 
 @Component({
   selector: 'app-immigration',
@@ -7,17 +8,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./immigration.component.css']
 })
 export class ImmigrationComponent implements OnInit {
-  bookings: any;
-  constructor(private http: HttpClient) { }
+  viewModel: any = {};
+  validationResult: any;
+  isLoaded = false;
+  constructor(private validateService: PassengerValidationService) {
 
-  ngOnInit() {
-    this.searchBookings();
-  }
+   }
 
-  searchBookings(){
-    this.http.get('http://localhost:5000/api/bookings/Harry').subscribe(
-      response => { this.bookings = response; },
-      error => { console.log(error); }
+  ngOnInit() {}
+
+  validateBooking() {
+    this.isLoaded = false;
+    this.validateService.validateBooking(this.viewModel).subscribe(
+      response => {
+        this.validationResult = response;
+        this.isLoaded = true;
+      },
+      error => {
+        this.isLoaded = true;
+        console.log(error);
+      }
     );
   }
 
