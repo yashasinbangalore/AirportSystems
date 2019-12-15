@@ -6,6 +6,7 @@ using AirportServices.API.Domain.Repositories;
 using AirportServices.API.Domain.Models;
 using AirportServices.API.Domain.Services;
 using AirportServices.API.Domain.Utilities;
+using Microsoft.Extensions.Logging;
 
 namespace AirportServices.API.Services
 {
@@ -21,8 +22,6 @@ namespace AirportServices.API.Services
         }
         public async Task<ValidationResponse> ValidateAsync(ValidationRequest request)
         {
-            try
-            {
                 if (!string.IsNullOrWhiteSpace(request.PassengerName) &&
                     !string.IsNullOrWhiteSpace(request.Airport))
                 {
@@ -59,11 +58,6 @@ namespace AirportServices.API.Services
                     else
                         return new ValidationResponse { Result = Constants.RESULT_ERROR, Message = Constants.MSG_ERROR_WRONGAIRPORT };
                 }
-            }
-            catch(Exception ex)
-            {
-                return new ValidationResponse { Result = Constants.RESULT_ERROR, Message = Constants.MSG_ERROR_GENERAL };
-            }
         }
         
     }

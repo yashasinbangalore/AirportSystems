@@ -15,12 +15,16 @@
 
 
 <main role="main" class="container">
-  <div *ngIf="isValidated() && !isLoading" class="jumbotron">
+  <div *ngIf="isValidated() && !isLoading && !isError" class="jumbotron">
     <h1>{{validationResult.result}}</h1>
     <p class="lead">{{validationResult.message}}</p>
   </div>
   <div *ngIf="isLoading" class="jumbotron">
     <h1>Checking...</h1>
     <p class="lead">&nbsp;</p>
+  </div>
+  <div *ngIf="isError" class="jumbotron">
+    <h1>Error</h1>
+    <p class="lead">Something went wrong. Please contact the administrator.</p>
   </div>
 </main>

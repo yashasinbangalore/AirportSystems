@@ -11,16 +11,19 @@ export class ImmigrationComponent implements OnInit {
   viewModel: any = {};
   validationResult: any;
   isLoading: boolean;
+  isError: boolean;
   constructor(private validateService: PassengerValidationService) {
 
    }
 
   ngOnInit() {
     this.isLoading = false;
+    this.isError = false;
   }
 
   validateBooking() {
     this.isLoading = true;
+    this.isError = false;
     this.validateService.validateBooking(this.viewModel).subscribe(
       response => {
         this.validationResult = response;
@@ -29,6 +32,7 @@ export class ImmigrationComponent implements OnInit {
       error => {
         console.log(error);
         this.isLoading = false;
+        this.isError = true;
       }
     );
   }
