@@ -10,7 +10,6 @@ import { PassengerValidationService } from '../_services/passengerValidation.ser
 export class ImmigrationComponent implements OnInit {
   viewModel: any = {};
   validationResult: any;
-  isLoaded = false;
   constructor(private validateService: PassengerValidationService) {
 
    }
@@ -18,17 +17,18 @@ export class ImmigrationComponent implements OnInit {
   ngOnInit() {}
 
   validateBooking() {
-    this.isLoaded = false;
     this.validateService.validateBooking(this.viewModel).subscribe(
       response => {
         this.validationResult = response;
-        this.isLoaded = true;
       },
       error => {
-        this.isLoaded = true;
         console.log(error);
       }
     );
+  }
+
+  isValidated() {
+    return !!this.validationResult;
   }
 
 }
